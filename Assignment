@@ -1,0 +1,25 @@
+1. Replica Set:
+
+Replica set is used to ensure that a specific set of Pods is running at all times. It is kind of like a watch dog.
+Daemon set is a way to ensure that a Pod is present on a defined set of Nodes of a cluster. If a node gets added/deleted, Daemon set automatically add/delete the pod.
+Common use case where we use Deamon is Monitoring Exporters.
+
+2. Deployment:
+
+kubectl patch deployment kubia -p '{"spec": {"minReadySeconds": 10}}'
+kubectl set image deployment kubia nodejs=luksa/kubia:v2
+
+3. Service:
+
+4. VOTING APP -DEMO practical:
+
+After casting the vote:- Able to see the change in pod/result which is changing the RESTARTS number as well.
+After deleting voter pod - no difference. Noticed that new vote pod is getting created immediately with different ID. 
+After deleting worker pod:- no difference. Noticed that new worker pod is getting created immediately with different ID. 
+After deleting db pod:- Able to see the updated result in RESTARTS but not in the results app.results didn't get update. 
+                        Noticed that new worker db pod is getting created immediately with different ID. 
+
+To fix, deleted the result pod:-  kubectl delete po result-5d57b59f4b-j68kj
+
+Then a new copy of the result-app pod will be created and that will connect to the db.
+
