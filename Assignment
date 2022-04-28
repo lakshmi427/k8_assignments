@@ -10,6 +10,8 @@ kubectl patch deployment kubia -p '{"spec": {"minReadySeconds": 10}}'
 kubectl set image deployment kubia nodejs=luksa/kubia:v2
 
 3. Service:
+We need to check the parameters (node port,service IP,target port & selectors) in the YAML file of the replica set should correct and match with the application
+along with the space issues and syntax issues.
 
 4. VOTING APP -DEMO practical:
 
